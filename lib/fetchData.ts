@@ -1,6 +1,5 @@
 import { Octokit } from "octokit";
 import { MarkdownFileURL, WriteupMetaData, WriteupsRepository } from "./types";
-import { OctokitResponse } from "@octokit/types";
 import matter, { GrayMatterFile } from "gray-matter";
 
 // https://www.programcreek.com/typescript/?api=@octokit/rest.Octokit

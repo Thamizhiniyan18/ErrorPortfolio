@@ -14,10 +14,13 @@ import {
   CommandShortcut,
 } from "@/components/ui/command";
 import Link from "next/link";
+import { WriteupMetaData } from "@/lib/types";
+import { Badge } from "../ui/badge";
+import clsx from "clsx";
 
-type Props = {};
+type Props = { Metadata: (WriteupMetaData | undefined)[] };
 
-const SearchBar = ({}: Props) => {
+const SearchBar = ({ Metadata }: Props) => {
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -55,71 +58,34 @@ const SearchBar = ({}: Props) => {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
 
-          {/* <CommandGroup heading="Passwords">
-            {passwords.map((password) => (
+          <CommandGroup heading="Writeups">
+            {Metadata.map((data) => (
               <Link
-                key={`${password.id}`}
-                href={{
-                  pathname: "/dashboard/passwords",
-                  query: { id: password.id },
-                }}
+                key={`${data?.Title}`}
+                href={`/writeups/${data?.Title}`}
                 onClick={() => setOpen(false)}
               >
                 <CommandItem className="bg-transparent cursor-pointer">
-                  <span className="full flex justify-start items-center h-5">
-                    <span className="material-symbols-outlined w-5 h-5 mr-3 text-primary">
-                      password
-                    </span>
-                    {password.account_description}
+                  <span className="w-full flex justify-start items-center h-5">
+                    {/* <Image /> */}
+                    <div className="w-full flex justify-between items-center h-5">
+                      <p>{data?.Title}</p>
+                      <div className="flex just-start items-center h-5">
+                        <Badge className={clsx("mr-1", {})}>{data?.Type}</Badge>
+                        <Badge
+                          className={clsx("", {
+                            "bg-[#9FEF00]": data?.Platform === "HackTheBox",
+                            "bg-red-600": data?.Platform === "TryHackMe",
+                          })}
+                        >
+                          {data?.Difficulty}
+                        </Badge>
+                      </div>
+                    </div>
                   </span>
                 </CommandItem>
               </Link>
             ))}
-          </CommandGroup>
-          <CommandSeparator /> */}
-
-          <CommandGroup heading="Recovery Keys">
-            <Link
-              href={`dashboard/recoverykeys?id=1`}
-              onClick={() => setOpen(false)}
-            >
-              <CommandItem className="bg-transparent cursor-pointer">
-                <span className="full flex justify-start items-center h-5">
-                  <span className="material-symbols-outlined w-5 h-5 mr-3 text-primary">
-                    key
-                  </span>
-                  Recovery Keys
-                </span>
-              </CommandItem>
-            </Link>
-          </CommandGroup>
-          <CommandSeparator />
-
-          <CommandGroup heading="Cards">
-            <Link href={`/dashboard/cards?id=1`} onClick={() => setOpen(false)}>
-              <CommandItem className="bg-transparent cursor-pointer">
-                <span className="full flex justify-start items-center h-5">
-                  <span className="material-symbols-outlined w-5 h-5 mr-3 text-primary">
-                    credit_card
-                  </span>
-                  Cards
-                </span>
-              </CommandItem>
-            </Link>
-          </CommandGroup>
-          <CommandSeparator />
-
-          <CommandGroup heading="Notes">
-            <Link href={`/dashboard/notes?id=1`} onClick={() => setOpen(false)}>
-              <CommandItem className="bg-transparent cursor-pointer">
-                <span className="full flex justify-start items-center h-5">
-                  <span className="material-symbols-outlined w-5 h-5 mr-3 text-primary">
-                    notes
-                  </span>
-                  Notes
-                </span>
-              </CommandItem>
-            </Link>
           </CommandGroup>
           <CommandSeparator />
         </CommandList>
