@@ -1,11 +1,11 @@
-import { getWriteupsMetadata } from "@/lib/fetchData";
 
-export default async function WriteupsLayouts({
+
+export default async function WriteupsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  await getWriteupsMetadata();
-
-  return <section>{children}</section>;
+  
+  
+  return <section className="w-screen flex justify-center">{children}</section>;
 }

@@ -11,20 +11,6 @@ type WriteupsRepository = GetResponseTypeFromEndpointMethod<
   typeof octokit.rest.repos.getContent
 >;
 
-type WriteupsRepositoryData = {
-  type: "dir";
-  size: number;
-  name: string;
-  path: string;
-  content?: string | undefined;
-  sha: string;
-  url: string;
-  git_url: string | null;
-  html_url: string | null;
-  download_url: string | null;
-  _links: {};
-}[];
-
 type WriteupsRepositoryFileTree = {
   tree: [
     {
@@ -34,12 +20,14 @@ type WriteupsRepositoryFileTree = {
 };
 
 type WriteupMetaData = {
-  Platform: string | null;
-  Difficulty: string | null;
-  Status: string | null;
-  Type: string | null;
-  Title: string | null;
-  Category: string | null;
-  tags: string | null;
-  CreatedOn: string | null;
+  Platform?: string;
+  Difficulty?: string;
+  Status?: string;
+  Type?: string;
+  Title?: string;
+  Category?: string;
+  tags?: string[];
+  CreatedOn?: string;
 };
+
+type MarkdownFileURL = { name: string; url: string };
