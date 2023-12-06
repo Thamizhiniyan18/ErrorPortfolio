@@ -60,9 +60,9 @@ const Pre = (props) => {
   if (props.children.type === "code") {
     const html = hljs.highlightAuto(props.children.props.children).value;
 
-    console.log(
-      "----------------------------------------------------------------"
-    );
+    // console.log(
+    //   "----------------------------------------------------------------"
+    // );
     // console.log(html);
 
     return <pre>{html}</pre>;
@@ -70,8 +70,6 @@ const Pre = (props) => {
 };
 
 const A = (props) => {
-  console.log(props);
-
   return (
     <Link href={props.href} target="_blank" className="text-primary">
       {props.children}
