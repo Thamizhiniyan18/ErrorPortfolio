@@ -68,7 +68,7 @@ const page = async ({ params }: Props) => {
   const Content: string | undefined = WriteupData && WriteupData.content;
 
   return (
-    <div className="w-screen flex">
+    <div className="w-full flex">
       <section className="fixed w-[300px] xl:w-[400px] h-[100vh-100px]">
         <ScrollArea>
           <h2 className="w-full text-center p-2 border-none">

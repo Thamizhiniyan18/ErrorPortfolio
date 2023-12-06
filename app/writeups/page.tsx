@@ -8,6 +8,7 @@ import { WriteupMetaData } from "@/lib/types";
 import WriteupCard from "@/components/writeup/WriteupCard";
 import SearchBar from "@/components/writeup/SearchBar";
 import { Badge } from "@/components/ui/badge";
+import WriteupTag from "@/components/writeup/WriteupTag";
 
 export const metadata = {
   title: "Writeups | Thamizhiniyan C S",
@@ -21,19 +22,17 @@ export default async function Writeups({}: Props) {
   const Tags: string[] | undefined = await getWriteupTags();
 
   return (
-    <div className="w-full flex flex-col justify-start items-center">
-      <div className="w-[90%]">
+    <div className="lg:w-[1220px] flex flex-col justify-start items-center">
+      <div className="w-full flex flex-col justify-start items-center">
         <SearchBar Metadata={MetaData && MetaData} />
-        <div className="w-full flex justify-center flex-wrap">
-          {Tags &&
-            Tags.map((tag) => (
-              <Badge key={tag} className="m-1">
-                {tag}
-              </Badge>
-            ))}
+        <div className="w-[98%] flex justify-between flex-wrap">
+          {Tags && Tags.map((tag) => <WriteupTag tag={tag} key={tag} />)}
         </div>
       </div>
-      <div className="w-full lg:w-[90%] grid grid-col-1 lg:grid-cols-2 xl:grid-cols-4 gap-4 p-4">
+
+      <div className="w-full h-[50px] mt-4 mb-2"></div>
+
+      <div className="w-full grid grid-col-1 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-2">
         {MetaData &&
           MetaData.map(
             (each, index) =>
