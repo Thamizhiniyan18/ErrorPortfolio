@@ -53,7 +53,7 @@ type Props = {};
 
 export default function NavBar({}: Props) {
   return (
-    <div className="w-full h-[100px] flex justify-between items-center px-10">
+    <div className="bg-background fixed top-0 left-0 w-full h-[100px] flex justify-between items-center px-10">
       <Link href="/">
         <h1>Thamizhiniyan C S</h1>
       </Link>
@@ -95,7 +95,7 @@ export default function NavBar({}: Props) {
           <NavigationMenuItem>
             <NavigationMenuTrigger>Writeups</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+              <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                 {components.map((component) => (
                   <ListItem
                     key={component.title}
@@ -105,7 +105,7 @@ export default function NavBar({}: Props) {
                     {component.description}
                   </ListItem>
                 ))}
-              </ul>
+              </div>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
@@ -128,7 +128,7 @@ const ListItem = React.forwardRef<
   React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, ...props }, ref) => {
   return (
-    <li>
+    <div>
       <NavigationMenuLink asChild>
         <Link
           href={props.href as string}
@@ -145,7 +145,7 @@ const ListItem = React.forwardRef<
           </p>
         </Link>
       </NavigationMenuLink>
-    </li>
+    </div>
   );
 });
 ListItem.displayName = "ListItem";

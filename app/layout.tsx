@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -28,7 +28,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavBar />
-          {children}
+          <div className="mt-[100px] w-full">{children}</div>
           <Analytics />
           <Toaster />
         </ThemeProvider>

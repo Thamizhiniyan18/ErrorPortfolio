@@ -37,12 +37,12 @@ const Commands = (props: Props) => {
   };
 
   return (
-    <Badge
+    <code
       onClick={() => copyToClipboard(props.children, "Command")}
-      className="cursor-pointer"
+      className="cursor-pointer text-red-500"
     >
       {props.children}
-    </Badge>
+    </code>
   );
 };
 

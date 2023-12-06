@@ -8,9 +8,10 @@ import { GrayMatterFile } from "gray-matter";
 import { WriteupMetaData } from "@/lib/types";
 import { Separator } from "@/components/ui/separator";
 import MetadataComponent from "@/components/writeup/MetadataComponent";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import Link from "next/link";
 import CustomMDX from "@/components/mdx-remote";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   params: { writeup: string };
@@ -76,15 +77,33 @@ const page = async ({ params }: Props) => {
           </h2>
         </ScrollArea>
       </section>
+
       <Separator orientation="vertical" className="ml-[300px] xl:ml-[400px]" />
-      <section className="w-[calc(100%-300px)] xl:w-[calc(100%-500px)] min-h-[100vh-100px] p-2">
+
+      {/* <section className="w-[calc(100%-300px)] xl:w-[calc(100%-500px)] min-h-[100vh-100px] p-4"> */}
+      <section
+        id="ScrollToTop"
+        className="w-[500px] xl:w-[1000px] min-h-[100vh-100px] p-4 text-justify"
+      >
         <Separator orientation="horizontal" />
+
         {Metadata && <MetadataComponent Metadata={Metadata} />}
-        <Separator orientation="horizontal" />
+
+        <Separator orientation="horizontal" className="my-4" />
+
         <Suspense fallback={<h1>Loading ..... !!!!</h1>}>
           {Content && <CustomMDX source={Content} />}
         </Suspense>
       </section>
+
+      <Button className="fixed bottom-10 right-10 z-[9999] rounded-full p-0 w-10 h-10">
+        <Link
+          href="#ScrollToTop"
+          className="w-full h-full flex justify-center items-center "
+        >
+          <span className="material-symbols-outlined">arrow_upward</span>
+        </Link>
+      </Button>
     </div>
   );
 };
