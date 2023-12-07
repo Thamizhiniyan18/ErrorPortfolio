@@ -7,28 +7,6 @@ import CodeBlock from "./writeup/CodeBlock";
 import "highlight.js/styles/github.css";
 import { Skeleton } from "./ui/skeleton";
 
-function Table({ data }) {
-  let headers = data.headers.map((header, index) => (
-    <th key={index}>{header}</th>
-  ));
-  let rows = data.rows.map((row, index) => (
-    <tr key={index}>
-      {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
-      ))}
-    </tr>
-  ));
-
-  return (
-    <table>
-      <thead>
-        <tr>{headers}</tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
-  );
-}
-
 const H1 = (props) => {
   const url = props.children
     .toString()
@@ -45,14 +23,30 @@ const H1 = (props) => {
   );
 };
 
-const H2 = (props) => {
-  const url = props.children
+function slugify(str) {
+  return str
     .toString()
     .toLowerCase()
-    .replaceAll(" ", "-")
-    .replaceAll(".", "");
+    .trim() // Remove whitespace from both ends of a string
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(/&/g, "-and-") // Replace & with 'and'
+    .replace(/[^\w\-]+/g, "") // Remove all non-word characters except for -
+    .replace(/\-\-+/g, "-"); // Replace multiple - with single -
+}
 
-  console.log(props.children + "-" + url);
+const H2 = (props) => {
+  const lowerCase = props.children.toString();
+  // console.log(lowerCase);
+  // const replace_ = lowerCase.replaceAll(" ", "-");
+  // console
+  //   .log(replace_)
+
+  // const url = props.children
+
+  // TODO: Fix URL parsing
+  // .console.log(url);
+
+  const url = slugify(props.children);
 
   return (
     <Link href={`#${url}`} className="">
@@ -157,6 +151,60 @@ const CustomImage = (props) => {
   );
 };
 
+function Table({ data }) {
+  let headers = data.headers.map((header, index) => (
+    <th key={index}>{header}</th>
+  ));
+  let rows = data.rows.map((row, index) => (
+    <tr key={index}>
+      {row.map((cell, cellIndex) => (
+        <td key={cellIndex}>{cell}</td>
+      ))}
+    </tr>
+  ));
+
+  return (
+    <table>
+      <thead>
+        <tr>{headers}</tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
+  );
+}
+
+const P = ({ children }) => {
+  if (children.toString().startsWith("|")) {
+    console.log(children);
+    // if (children.toString()) {
+    // }
+
+    const headers = [];
+    const rows = [];
+
+    children.forEach((child) => {
+      if (child instanceof Object) {
+        headers.push(child.props.children);
+      } else {
+        if (child !== "|") {
+          if (child.toString().split("\n") instanceof Array) {
+            headers.push(child.props.children);
+          } else {
+            if (child !== "|") rows.push(child.toString().split("\n"));
+          }
+        }
+      }
+    });
+
+    console.log(headers);
+    console.log(rows);
+
+    return <Table data={{ headers, rows }} />;
+  } else {
+    return <p>{children}</p>;
+  }
+};
+
 const components = {
   h1: H1,
   h2: H2,
@@ -167,6 +215,7 @@ const components = {
   a: A,
   code: Commands,
   table: Table,
+  p: P,
 };
 
 export default function CustomMDX(props) {
