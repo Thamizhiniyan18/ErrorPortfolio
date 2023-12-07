@@ -12,6 +12,8 @@ import Link from "next/link";
 import CustomMDX from "@/components/mdx-remote";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
+import { TableOfContents, getTableOfContents } from "@/lib/toc";
+import { WriteupTableOfContents } from "@/components/toc";
 
 type Props = {
   params: { writeup: string };
@@ -68,6 +70,8 @@ const page = async ({ params }: Props) => {
 
   const Content: string | undefined = WriteupData && WriteupData.content;
 
+  const toc = Content && (await getTableOfContents(Content));
+
   return (
     <div className="w-full flex">
       <section className="fixed w-[300px] xl:w-[400px] h-[100vh-100px]">
@@ -75,6 +79,7 @@ const page = async ({ params }: Props) => {
           <h2 className="w-full text-center p-2 border-none">
             Table of Contents
           </h2>
+          {toc && <WriteupTableOfContents toc={toc} />}
         </ScrollArea>
       </section>
 
@@ -83,7 +88,7 @@ const page = async ({ params }: Props) => {
       {/* <section className="w-[calc(100%-300px)] xl:w-[calc(100%-500px)] min-h-[100vh-100px] p-4"> */}
       <section
         id="ScrollToTop"
-        className="w-[500px] xl:w-[1000px] min-h-[100vh-100px] p-4 text-justify"
+        className="w-[500px] xl:w-[900px] min-h-[100vh-100px] p-4 text-justify"
       >
         <Separator orientation="horizontal" />
 

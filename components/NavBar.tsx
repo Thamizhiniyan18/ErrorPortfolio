@@ -53,7 +53,7 @@ type Props = {};
 
 export default function NavBar({}: Props) {
   return (
-    <div className="bg-background fixed top-0 left-0 w-full h-[100px] flex justify-between items-center px-10">
+    <div className="z-[9999] bg-background fixed top-0 left-0 w-full h-[100px] flex justify-between items-center px-10">
       <Link href="/">
         <h1>Thamizhiniyan C S</h1>
       </Link>
@@ -73,7 +73,7 @@ export default function NavBar({}: Props) {
                       <div className="mb-2 mt-4 text-lg font-medium">
                         shadcn/ui
                       </div>
-                      <p className="text-sm leading-tight text-muted-foreground">
+                      <p className="text-lg leading-tight text-muted-foreground">
                         Beautifully designed components built with Radix UI and
                         Tailwind CSS.
                       </p>
@@ -139,8 +139,8 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <div className="text-lg font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-lg leading-snug text-muted-foreground">
             {children}
           </p>
         </Link>

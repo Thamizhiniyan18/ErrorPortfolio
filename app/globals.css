@@ -57,15 +57,12 @@
   }
   body {
     @apply bg-background text-foreground;
-    /* background-color: #020817; */
-    /* 
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); */
   }
   h1 {
     @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
   }
   h2 {
-    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight;
   }
   h3 {
     @apply scroll-m-20 text-2xl font-semibold tracking-tight;
@@ -74,7 +71,7 @@
     @apply scroll-m-20 text-xl font-semibold tracking-tight;
   }
   p {
-    @apply leading-7 [&:not(:first-child)]:mt-6;
+    @apply leading-7 text-lg [&:not(:first-child)]:mt-6;
   }
   blockquote {
     @apply mt-6 border-l-2 pl-6 italic;
@@ -84,6 +81,18 @@
   }
   code {
     @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  }
+  table {
+    @apply w-full rounded-xl;
+  }
+  tr {
+    @apply m-0 border-t p-0 even:bg-muted;
+  }
+  th {
+    @apply border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right;
+  }
+  td {
+    @apply border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right;
   }
   .TypographySmall {
     @apply text-sm font-medium leading-none;
@@ -96,6 +105,9 @@
   }
   .glassmorphism {
     @apply h-full w-full bg-blue-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20;
+  }
+  .BlogHeadingLinks {
+    @apply my-4;
   }
 }
 

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import NavBar from "@/components/NavBar";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({ subsets: ["latin"] });
+const josefin_sans = Josefin_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Thamizhiniyan C S",
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>
+      <body className={josefin_sans.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
