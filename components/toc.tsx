@@ -19,7 +19,10 @@ export function WriteupTableOfContents({ toc }: TocProps) {
             .flatMap((item) => [item.url, item?.items?.map((item) => item.url)])
             .flat()
             .filter(Boolean)
-            .map((id) => id?.split("#")[1])
+            .map((id) => {
+              const temp = id?.split("#")[1];
+              return `user-content-${temp}`;
+            })
         : [],
     [toc]
   );
@@ -85,10 +88,11 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
         return (
           <li key={index} className={cn("mt-0 pt-2")}>
             <a
-              href={item.url}
+              href={`#user-content-${item.url.replaceAll("#", "")}`}
               className={cn(
                 "inline-block no-underline transition-colors hover:text-foreground",
-                item.url === `#${activeItem}`
+                `user-content-${item.url.replaceAll("#", "")}` ===
+                  `${activeItem}`
                   ? "font-medium text-foreground"
                   : "text-muted-foreground"
               )}
@@ -96,7 +100,11 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
               {item.title}
             </a>
             {item.items?.length ? (
-              <Tree tree={item} level={level + 1} activeItem={activeItem} />
+              <Tree
+                tree={item}
+                level={level + 1}
+                activeItem={`${activeItem}`}
+              />
             ) : null}
           </li>
         );

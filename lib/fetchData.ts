@@ -1,6 +1,7 @@
 import { Octokit } from "octokit";
 import { MarkdownFileURL, WriteupMetaData, WriteupsRepository } from "./types";
 import matter, { GrayMatterFile } from "gray-matter";
+import { compileMDX } from "next-mdx-remote/rsc";
 
 // https://www.programcreek.com/typescript/?api=@octokit/rest.Octokit
 // https://raw.githubusercontent.com/Thamizhiniyan18/Writeups/main/Devvortex/Devvortex.md
@@ -127,6 +128,8 @@ export const getWriteup = async (name: string) => {
 
       const rawMarkdown = await response.text();
 
+      
+
       const data: GrayMatterFile<string> = matter(rawMarkdown);
 
       const metadata: WriteupMetaData = data.data;
@@ -158,5 +161,37 @@ export const getWriteupTags = async () => {
   } catch (error) {
     console.log(error);
     throw error;
+  }
+};
+
+export const filterMetadata = (
+  metadata: WriteupMetaData[],
+  platform?: string,
+  tag?: string
+) => {
+  const filteredData: WriteupMetaData[] | undefined = metadata.filter(
+    (data) => {
+      if (platform && tag) {
+        console.log(platform, tag);
+        return (
+          data?.Platform?.toLowerCase() === platform &&
+          data?.tags?.includes(tag as string)
+        );
+      }
+
+      if (platform && !tag) {
+        return data?.Platform?.toLowerCase() === platform;
+      }
+
+      if (!platform && tag) {
+        return data?.tags?.includes(tag as string);
+      }
+    }
+  );
+
+  if (filteredData.length === 0) {
+    return undefined;
+  } else {
+    return filteredData;
   }
 };

@@ -6,6 +6,15 @@ import Commands from "./writeup/Commands";
 import CodeBlock from "./writeup/CodeBlock";
 import "highlight.js/styles/github.css";
 import { Skeleton } from "./ui/skeleton";
+import remarkSlug from "remark-slug";
+import remarkToc from "remark-toc";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeHighlight from "rehype-highlight";
+import rehypeSlug from "rehype-slug";
+import rehypeSanitize from "rehype-sanitize";
+import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
+import remarkGfm from "remark-gfm";
+import rehypeToc from "@jsdevtools/rehype-toc";
 
 const H1 = (props) => {
   const url = props.children
@@ -175,12 +184,8 @@ function Table({ data }) {
 
 const P = ({ children }) => {
   if (children.toString().startsWith("|")) {
-    console.log(children);
-    // if (children.toString()) {
-    // }
-
     const headers = [];
-    const rows = [];
+    let rows;
 
     children.forEach((child) => {
       if (child instanceof Object) {
@@ -188,16 +193,26 @@ const P = ({ children }) => {
       } else {
         if (child !== "|") {
           if (child.toString().split("\n") instanceof Array) {
-            headers.push(child.props.children);
+            let data = child.toString().split("\n");
+            let dataSet = [];
+            data.forEach((each) => {
+              if (each !== "|") {
+                let tempData = [];
+                each.split("|").forEach((e) => {
+                  if (e !== "" && e !== "---") {
+                    tempData.push(e);
+                  }
+                });
+                dataSet.push(tempData);
+              }
+            });
+            rows = dataSet;
           } else {
             if (child !== "|") rows.push(child.toString().split("\n"));
           }
         }
       }
     });
-
-    console.log(headers);
-    console.log(rows);
 
     return <Table data={{ headers, rows }} />;
   } else {
@@ -222,7 +237,41 @@ export default function CustomMDX(props) {
   return (
     <MDXRemote
       {...props}
-      components={{ ...components, ...(props.components || {}) }}
+      // components={{ ...components, ...(props.components || {}) }}
+      options={{
+        parseFrontmatter: true,
+        mdxOptions: {
+          remarkPlugins: [remarkGfm, remarkSlug, remarkToc],
+          rehypePlugins: [
+            rehypeHighlight,
+            rehypeSanitize,
+            [rehypeSlug],
+            [
+              rehypeAutolinkHeadings,
+              {
+                // behavior: "wrap",
+                // content: '<span className="material-symbols-outlined">link</span>',
+                content: /** @type {Array<ElementContent>} */ (
+                  fromHtmlIsomorphic(
+                    '<span class="material-symbols-outlined text-primary text-center mx-2">link</span>',
+                    { fragment: true }
+                  ).children
+                ),
+              },
+            ],
+            // [
+            //   rehypeToc,
+            //   {
+            //     cssClasses: {
+            //       toc: "page-outline", // Change the CSS class for the TOC
+            //       link: "page-link", // Change the CSS class for links in the TOC
+            //     },
+            //   },
+            // ],
+          ],
+        },
+        scope: {},
+      }}
     />
   );
 }

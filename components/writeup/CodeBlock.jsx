@@ -56,7 +56,7 @@ const CodeBlock = (props) => {
               <span className="material-symbols-outlined">content_copy</span>
             </Button>
             <code
-              className="w-full rounded-b-xl"
+              className="w-full rounded-b-xl min-h-[100px]"
               dangerouslySetInnerHTML={{ __html: html.value }}
               // style={{backgroundColor: "none !important" }}
             />

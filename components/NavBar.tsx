@@ -22,31 +22,31 @@ const components: { title: string; href: string; description: string }[] = [
   },
   {
     title: "HackTheBox",
-    href: "/writeups/hackthebox",
-    description: "HackTheBox Writups.",
+    href: "/writeups?platform=hackthebox",
+    description: "HackTheBox Writeups.",
   },
   {
     title: "TryHackMe",
-    href: "/writeups/tryhackme",
-    description: "TryHackMe Writups.",
+    href: "/writeups?platform=tryhackme",
+    description: "TryHackMe Writeups.",
   },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
+  // {
+  //   title: "Scroll-area",
+  //   href: "/docs/primitives/scroll-area",
+  //   description: "Visually or semantically separates content.",
+  // },
+  // {
+  //   title: "Tabs",
+  //   href: "/docs/primitives/tabs",
+  //   description:
+  //     "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+  // },
+  // {
+  //   title: "Tooltip",
+  //   href: "/docs/primitives/tooltip",
+  //   description:
+  //     "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+  // },
 ];
 
 type Props = {};
@@ -64,22 +64,21 @@ export default function NavBar({}: Props) {
             <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-3">
+                <div className="row-span-3">
                   <NavigationMenuLink asChild>
                     <a
                       className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                       href="/"
                     >
-                      <div className="mb-2 mt-4 text-lg font-medium">
-                        shadcn/ui
+                      <div className="mb-2 mt-4 text-sm font-medium">
+                        Thamizhiniyan C S
                       </div>
-                      <p className="text-lg leading-tight text-muted-foreground">
-                        Beautifully designed components built with Radix UI and
-                        Tailwind CSS.
+                      <p className="text-sm leading-tight text-muted-foreground">
+                        Penetration Tester | Next.js Developer
                       </p>
                     </a>
                   </NavigationMenuLink>
-                </li>
+                </div>
                 <ListItem href="/docs" title="Introduction">
                   Re-usable components built using Radix UI and Tailwind CSS.
                 </ListItem>
@@ -139,8 +138,8 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-lg font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-lg leading-snug text-muted-foreground">
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
         </Link>
