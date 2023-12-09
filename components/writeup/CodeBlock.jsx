@@ -3,11 +3,9 @@
 import React from "react";
 import { ToastAction } from "../ui/toast";
 import { useToast } from "../ui/use-toast";
-import { Card, CardContent, CardHeader } from "../ui/card";
 import hljs from "highlight.js";
 import { Button } from "../ui/button";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
-
 const CodeBlock = (props) => {
   const { toast } = useToast();
   const code = props.children.props.children;
@@ -52,7 +50,7 @@ const CodeBlock = (props) => {
           <span className="material-symbols-outlined">content_copy</span>
         </Button>
       </div>
-      <ScrollArea className="w-full p-4">
+      <ScrollArea id="WriteupCodeBlock" className="w-full p-4">
         <code
           className="w-full rounded-b-xl min-h-[100px]"
           dangerouslySetInnerHTML={{ __html: html.value }}
