@@ -7,6 +7,7 @@ const config = {
   experimental: {
     serverComponentsExternalPackages: ["plaiceholder"],
   },
+  transpilePackages: ["@plaiceholder/ui"],
   images: {
     remotePatterns: [
       {

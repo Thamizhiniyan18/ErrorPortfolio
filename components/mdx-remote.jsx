@@ -89,7 +89,7 @@ const P = ({ children }) => {
 };
 
 const components = {
-  img: CustomImage,
+  // img: CustomImage,
   pre: CodeBlock,
   // a: A,
   // table: Table,
