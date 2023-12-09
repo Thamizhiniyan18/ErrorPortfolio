@@ -5,7 +5,7 @@ import withPlaiceholder from "@plaiceholder/next";
 
 const config = {
   experimental: {
-    serverComponentsExternalPackages: ["@plaiceholder/ui"],
+    serverComponentsExternalPackages: ["plaiceholder"],
   },
   images: {
     remotePatterns: [
