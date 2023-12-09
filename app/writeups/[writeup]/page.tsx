@@ -19,12 +19,12 @@ type Props = {
   params: { writeup: string };
 };
 
-export async function generateStaticParams() {
-  const writeupsMetadata: (WriteupMetaData | undefined)[] =
-    await getWriteupsMetadata();
+// export async function generateStaticParams() {
+//   const writeupsMetadata: (WriteupMetaData | undefined)[] =
+//     await getWriteupsMetadata();
 
-  return writeupsMetadata.map((writeup) => ({ writeup: writeup?.Title }));
-}
+//   return writeupsMetadata.map((writeup) => ({ writeup: writeup?.Title }));
+// }
 
 export async function generateMetadata({ params }: Props) {
   const writeupMetadata: WriteupMetaData | undefined = await getWriteupMetadata(
