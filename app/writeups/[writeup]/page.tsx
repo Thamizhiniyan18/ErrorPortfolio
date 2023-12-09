@@ -14,6 +14,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { getTableOfContents } from "@/lib/toc";
 import { WriteupTableOfContents } from "@/components/toc";
+import TableOfContentsSkeleton from "@/components/skeletons/TableOfContentsSkeleton";
 
 type Props = {
   params: { writeup: string };
@@ -79,7 +80,9 @@ const page = async ({ params }: Props) => {
           <h2 className="w-full text-center p-2 border-none">
             Table of Contents
           </h2>
-          {toc && <WriteupTableOfContents toc={toc} />}
+          <Suspense fallback={<TableOfContentsSkeleton />}>
+            {toc && <WriteupTableOfContents toc={toc} />}
+          </Suspense>
         </ScrollArea>
       </section>
 

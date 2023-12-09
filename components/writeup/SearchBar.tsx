@@ -3,7 +3,6 @@
 import React from "react";
 
 import {
-  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -11,7 +10,6 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
 import Link from "next/link";
 import { WriteupMetaData } from "@/lib/types";
@@ -67,7 +65,6 @@ const SearchBar = ({ Metadata }: Props) => {
               >
                 <CommandItem className="bg-transparent cursor-pointer">
                   <span className="w-full flex justify-start items-center h-5">
-                    {/* <Image /> */}
                     <div className="w-full flex justify-between items-center h-5">
                       <p>{data?.Title}</p>
                       <div className="flex just-start items-center h-5">

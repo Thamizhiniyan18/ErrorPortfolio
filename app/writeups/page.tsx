@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  fetchRawMarkdownFile,
   filterMetadata,
   getWriteupTags,
   getWriteupsMetadata,
@@ -11,7 +10,6 @@ import SearchBar from "@/components/writeup/SearchBar";
 import { Badge } from "@/components/ui/badge";
 import WriteupTag from "@/components/writeup/WriteupTag";
 import Link from "next/link";
-import { MetaData } from "@/lib/metaData";
 
 export const metadata = {
   title: "Writeups | Thamizhiniyan C S",
@@ -26,9 +24,9 @@ type Props = {
 };
 
 export default async function Writeups({ searchParams }: Props) {
-  // const MetaData: (WriteupMetaData | undefined)[] = await getWriteupsMetadata();
+  const MetaData: (WriteupMetaData | undefined)[] = await getWriteupsMetadata();
 
-  // const Tags: string[] | undefined = await getWriteupTags();
+  const Tags: string[] | undefined = await getWriteupTags();
   const filter: boolean =
     searchParams.platform || searchParams.tag ? true : false;
 
@@ -49,7 +47,7 @@ export default async function Writeups({ searchParams }: Props) {
           >
             <Badge>All</Badge>
           </Link>
-          {/* {Tags && Tags.map((tag) => <WriteupTag tag={tag} key={tag} />)} */}
+          {Tags && Tags.map((tag) => <WriteupTag tag={tag} key={tag} />)}
         </div>
       </div>
 
