@@ -39,7 +39,7 @@ const Commands = (props: Props) => {
   return (
     <code
       onClick={() => copyToClipboard(props.children, "Command")}
-      className="cursor-pointer text-red-500"
+      className="cursor-pointer text-red-500 code"
     >
       {props.children}
     </code>

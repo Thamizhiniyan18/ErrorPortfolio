@@ -128,8 +128,6 @@ export const getWriteup = async (name: string) => {
 
       const rawMarkdown = await response.text();
 
-      
-
       const data: GrayMatterFile<string> = matter(rawMarkdown);
 
       const metadata: WriteupMetaData = data.data;
@@ -172,7 +170,6 @@ export const filterMetadata = (
   const filteredData: WriteupMetaData[] | undefined = metadata.filter(
     (data) => {
       if (platform && tag) {
-        console.log(platform, tag);
         return (
           data?.Platform?.toLowerCase() === platform &&
           data?.tags?.includes(tag as string)

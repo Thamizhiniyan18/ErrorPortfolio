@@ -53,7 +53,7 @@ type Props = {};
 
 export default function NavBar({}: Props) {
   return (
-    <div className="z-[9999] bg-background fixed top-0 left-0 w-full h-[100px] flex justify-between items-center px-10">
+    <div className="z-[45] bg-background fixed top-0 left-0 w-full h-[100px] flex justify-between items-center px-10">
       <Link href="/">
         <h1>Thamizhiniyan C S</h1>
       </Link>

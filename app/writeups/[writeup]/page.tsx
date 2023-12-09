@@ -12,9 +12,8 @@ import Link from "next/link";
 import CustomMDX from "@/components/mdx-remote";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { TableOfContents, getTableOfContents } from "@/lib/toc";
+import { getTableOfContents } from "@/lib/toc";
 import { WriteupTableOfContents } from "@/components/toc";
-import { compileMDX } from "next-mdx-remote/rsc";
 
 type Props = {
   params: { writeup: string };
@@ -67,7 +66,7 @@ const page = async ({ params }: Props) => {
     params.writeup
   );
 
-  // const Metadata: WriteupMetaData | undefined = WriteupData && WriteupData.data;
+  const Metadata: WriteupMetaData | undefined = WriteupData && WriteupData.data;
 
   const Content: string | undefined = WriteupData && WriteupData.content;
 
@@ -93,12 +92,14 @@ const page = async ({ params }: Props) => {
       >
         <Separator orientation="horizontal" />
 
-        {/* {Metadata && <MetadataComponent Metadata={Metadata} />} */}
+        {Metadata && <MetadataComponent Metadata={Metadata} />}
 
         <Separator orientation="horizontal" className="my-4" />
 
         <Suspense fallback={<h1>Loading ..... !!!!</h1>}>
-          {Content && <CustomMDX source={Content} />}
+          <div className="WriteupContent w-full">
+            {Content && <CustomMDX source={Content} />}
+          </div>
         </Suspense>
       </section>
 

@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/mdx-remote.jsx", "components/writeup/TableOfContents.jsx", "components/writeup/CodeBlock.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/mdx-remote.jsx", "components/writeup/TableOfContents.jsx", "components/writeup/CodeBlock.jsx", "components/writeup/CustomImage.jsx"],
   "exclude": ["node_modules"]
 }

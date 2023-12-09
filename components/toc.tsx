@@ -94,7 +94,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
                 `user-content-${item.url.replaceAll("#", "")}` ===
                   `${activeItem}`
                   ? "font-medium text-foreground"
-                  : "text-muted-foreground"
+                  : "text-primary"
               )}
             >
               {item.title}

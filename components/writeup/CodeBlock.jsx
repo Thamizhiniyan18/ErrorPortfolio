@@ -40,31 +40,26 @@ const CodeBlock = (props) => {
   };
 
   return (
-    <Card className="w-full bg-white/10 rounded-xl border border-primary">
-      <CardHeader className="w-full h-5 p-4 bg-primary rounded-t-xl flex flex-row items-center">
-        <p>{html.language} </p>
-      </CardHeader>
-      <CardContent className="bg-[var(codeblock)] p-4 rounded-b-xl">
-        <pre className="relative rounded-b-xl ">
-          <ScrollArea>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => copyToClipboard(code, "Code Block")}
-              className="absolute top-2 right-2 cursor-pointer flex justify-center items-center w-10 h-10 rounded-xl border hover:bg-primary"
-            >
-              <span className="material-symbols-outlined">content_copy</span>
-            </Button>
-            <code
-              className="w-full rounded-b-xl min-h-[100px]"
-              dangerouslySetInnerHTML={{ __html: html.value }}
-              // style={{backgroundColor: "none !important" }}
-            />
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
-        </pre>
-      </CardContent>
-    </Card>
+    <pre className="relative rounded-b-xl ">
+      <div className="CodeLanguage px-4 text-primary">
+        <p>#! /bin/{html.language} </p>
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => copyToClipboard(code, "Code Block")}
+          className="cursor-pointer flex justify-center items-center w-10 h-10 rounded-xl border hover:bg-primary"
+        >
+          <span className="material-symbols-outlined">content_copy</span>
+        </Button>
+      </div>
+      <ScrollArea className="w-full p-4">
+        <code
+          className="w-full rounded-b-xl min-h-[100px]"
+          dangerouslySetInnerHTML={{ __html: html.value }}
+        />
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
+    </pre>
   );
 };
 

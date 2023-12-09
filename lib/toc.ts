@@ -65,7 +65,7 @@ function getItems(node, current): Items {
 
 const getToc = () => (node, file) => {
   const table = toc(node);
-  const items = getItems(table.map, {depth: 4});
+  const items = getItems(table.map, { depth: 4 });
   file.data = items;
 };
 
