@@ -6,6 +6,7 @@ import { useToast } from "../ui/use-toast";
 import hljs from "highlight.js";
 import { Button } from "../ui/button";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
+
 const CodeBlock = (props) => {
   const { toast } = useToast();
   const code = props.children.props.children;

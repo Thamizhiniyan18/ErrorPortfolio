@@ -19,7 +19,6 @@ const config = {
     turbotrace: {
       logLevel: "error",
       logDetail: true,
-      logAll: true,
     },
   },
 };
