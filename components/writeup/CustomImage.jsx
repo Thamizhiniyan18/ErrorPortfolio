@@ -8,7 +8,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import Link from "next/link";
-import { Button } from "react-day-picker";
+import { Button } from "../ui/button";
 
 const CustomImage = async (props) => {
   if (props.src.endsWith(".webm")) return "";
@@ -50,7 +50,7 @@ const CustomImage = async (props) => {
             blurDataURL={data && data.base64}
           />
         </DialogTrigger>
-        <DialogContent className="DialogContent w-3/4 max-w-none flex justify-center items-center p-4">
+        <DialogContent className="DialogContent w-3/4 max-w-none bg-transparent border-none flex flex-col justify-center items-center p-4">
           <Image
             src={`https://raw.githubusercontent.com/Thamizhiniyan18/Writeups/main/${props.src}`}
             alt={`${props.src} writeup related image.`}
@@ -61,7 +61,10 @@ const CustomImage = async (props) => {
           />
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
-              <Link href={props.src} target="_blank">
+              <Link
+                href={`https://raw.githubusercontent.com/Thamizhiniyan18/Writeups/main/${props.src}`}
+                target="_blank"
+              >
                 <Button type="button" variant="secondary">
                   Click to view in browser
                 </Button>
