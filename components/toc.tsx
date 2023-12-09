@@ -88,10 +88,10 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
         return (
           <li key={index} className={cn("mt-0 pt-2")}>
             <a
-              href={`#user-content-${item.url.replaceAll("#", "")}`}
+              href={`#user-content-${item.url?.replaceAll("#", "")}`}
               className={cn(
                 "inline-block no-underline transition-colors hover:text-foreground",
-                `user-content-${item.url.replaceAll("#", "")}` ===
+                `user-content-${item.url?.replaceAll("#", "")}` ===
                   `${activeItem}`
                   ? "font-medium text-foreground"
                   : "text-primary"
