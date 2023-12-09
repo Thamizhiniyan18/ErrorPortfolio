@@ -19,12 +19,12 @@ type Props = {
   params: { writeup: string };
 };
 
-// export async function generateStaticParams() {
-//   const writeupsMetadata: (WriteupMetaData | undefined)[] =
-//     await getWriteupsMetadata();
+export async function generateStaticParams() {
+  const writeupsMetadata: (WriteupMetaData | undefined)[] =
+    await getWriteupsMetadata();
 
-//   return writeupsMetadata.map((writeup) => ({ writeup: writeup?.Title }));
-// }
+  return writeupsMetadata.map((writeup) => ({ writeup: writeup?.Title }));
+}
 
 export async function generateMetadata({ params }: Props) {
   const writeupMetadata: WriteupMetaData | undefined = await getWriteupMetadata(
@@ -84,8 +84,6 @@ const page = async ({ params }: Props) => {
       </section>
 
       <Separator orientation="vertical" className="ml-[300px] xl:ml-[400px]" />
-
-      {/* <section className="w-[calc(100%-300px)] xl:w-[calc(100%-500px)] min-h-[100vh-100px] p-4"> */}
       <section
         id="ScrollToTop"
         className="w-[500px] xl:w-[900px] min-h-[100vh-100px] p-4 text-justify max-w-[900px]"
