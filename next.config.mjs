@@ -15,6 +15,13 @@ const config = {
       },
     ],
   },
+  experimental: {
+    turbotrace: {
+      logLevel: "error",
+      logDetail: true,
+      logAll: true,
+    },
+  },
 };
 
 export default withPlaiceholder(config);
