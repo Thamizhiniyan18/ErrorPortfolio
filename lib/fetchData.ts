@@ -165,7 +165,9 @@ export const getWriteupTags = async () => {
 export const filterMetadata = (
   metadata: WriteupMetaData[],
   platform?: string,
-  tag?: string
+  tag?: string,
+  sbd?: string,
+  sba?: string
 ) => {
   const filteredData: WriteupMetaData[] | undefined = metadata.filter(
     (data) => {
@@ -189,6 +191,44 @@ export const filterMetadata = (
   if (filteredData.length === 0) {
     return undefined;
   } else {
+    if (sbd) {
+      if (sbd === "latest") {
+        return filteredData.slice().sort(customDateSortDescending);
+      }
+
+      if (sbd === "oldest") {
+        return filteredData.slice().sort(customDateSortAscending);
+      }
+      return filteredData;
+    }
     return filteredData;
   }
+};
+
+const customDateSortDescending = (
+  a: WriteupMetaData,
+  b: WriteupMetaData
+): number => {
+  const dateA =
+    a.CreatedOn && new Date(a.CreatedOn.split("-").reverse().join("-"));
+  const dateB =
+    b.CreatedOn && new Date(b.CreatedOn.split("-").reverse().join("-"));
+
+  if (dateA && dateB) {
+    return dateB.getTime() - dateA.getTime();
+  } else return 0;
+};
+
+const customDateSortAscending = (
+  a: WriteupMetaData,
+  b: WriteupMetaData
+): number => {
+  const dateA =
+    a.CreatedOn && new Date(a.CreatedOn.split("-").reverse().join("-"));
+  const dateB =
+    b.CreatedOn && new Date(b.CreatedOn.split("-").reverse().join("-"));
+
+  if (dateA && dateB) {
+    return dateA.getTime() - dateB.getTime();
+  } else return 0;
 };

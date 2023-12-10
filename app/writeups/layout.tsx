@@ -1,7 +1,14 @@
+import ScrollToUp from "@/components/ScrollToUp";
+
 export default async function WriteupsLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <section className="w-full flex justify-center">{children}</section>;
+  return (
+    <section id="#ScrollToUp" className="w-full flex justify-center p-4">
+      {children}
+      <ScrollToUp />
+    </section>
+  );
 }

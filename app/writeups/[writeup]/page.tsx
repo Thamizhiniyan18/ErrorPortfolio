@@ -8,10 +8,8 @@ import { GrayMatterFile } from "gray-matter";
 import { WriteupMetaData } from "@/lib/types";
 import { Separator } from "@/components/ui/separator";
 import MetadataComponent from "@/components/writeup/MetadataComponent";
-import Link from "next/link";
 import CustomMDX from "@/components/mdx-remote";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
 import { getTableOfContents } from "@/lib/toc";
 import { WriteupTableOfContents } from "@/components/toc";
 import TableOfContentsSkeleton from "@/components/skeletons/TableOfContentsSkeleton";
@@ -103,15 +101,6 @@ const page = async ({ params }: Props) => {
           </div>
         </Suspense>
       </section>
-
-      <Button className="fixed bottom-10 right-10 z-[9999] rounded-full p-0 w-10 h-10">
-        <Link
-          href="#ScrollToTop"
-          className="w-full h-full flex justify-center items-center "
-        >
-          <span className="material-symbols-outlined">arrow_upward</span>
-        </Link>
-      </Button>
     </div>
   );
 };

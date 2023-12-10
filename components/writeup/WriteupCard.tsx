@@ -21,14 +21,13 @@ type Props = { data: WriteupMetaData };
 
 const WriteupCard = ({ data }: Props) => {
   return (
-    <Link href={`/writeups/${data.Title}`}>
+    <Link
+      href={`/writeups/${data.Title}`}
+      className="flex justify-center items-center"
+    >
       <Card
         className={clsx(
-          "w-full h-[300px] lg:w-[400px] lg:h-[400px] p-0 border bg-gray-400 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-[]",
-          {
-            "hover:border-[#9FEF00]": data.Platform === "HackTheBox",
-            "hover:border-red-600": data.Platform === "TryHackMe",
-          }
+          "w-full h-[300px] lg:w-[400px] lg:h-[400px] p-0 border dark:hover:bg-white/10 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm"
         )}
       >
         <CardHeader className="w-full h-[100px] lg:h-[200px] flex justify-center items-center rounded-t-xl border-b-2">
@@ -53,7 +52,7 @@ const WriteupCard = ({ data }: Props) => {
               src={logoLargeTHM_White}
               alt={`${data.Platform} Logo`}
               height={100}
-              className="hidden dark:block"
+              className="hidden dark:block h-[80px] lg:[100px]"
               priority
             />
           )}
@@ -62,7 +61,7 @@ const WriteupCard = ({ data }: Props) => {
               src={logoLargeTHM_Color}
               alt={`${data.Platform} Logo`}
               height={100}
-              className="block dark:hidden"
+              className="block dark:hidden h-[80px] lg:[100px]"
             />
           )}
         </CardHeader>

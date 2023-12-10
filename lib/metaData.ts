@@ -1,6 +1,6 @@
 import { WriteupMetaData } from "./types";
 
-export const MetaData: (WriteupMetaData | undefined)[] = [
+export const TempMetaData: (WriteupMetaData | undefined)[] = [
   {
     Platform: "HackTheBox",
     Category: "Android",

@@ -30,35 +30,18 @@ const components: { title: string; href: string; description: string }[] = [
     href: "/writeups?platform=tryhackme",
     description: "TryHackMe Writeups.",
   },
-  // {
-  //   title: "Scroll-area",
-  //   href: "/docs/primitives/scroll-area",
-  //   description: "Visually or semantically separates content.",
-  // },
-  // {
-  //   title: "Tabs",
-  //   href: "/docs/primitives/tabs",
-  //   description:
-  //     "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  // },
-  // {
-  //   title: "Tooltip",
-  //   href: "/docs/primitives/tooltip",
-  //   description:
-  //     "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  // },
 ];
 
 type Props = {};
 
 export default function NavBar({}: Props) {
   return (
-    <div className="z-[45] bg-background fixed top-0 left-0 w-full h-[100px] flex justify-between items-center px-10">
+    <div className="hidden xl:flex z-[45] bg-background fixed top-0 left-0 w-full h-[100px] justify-between items-center px-10">
       <Link href="/">
-        <h1>Thamizhiniyan C S</h1>
+        <h1 className="text-2xl">Thamizhiniyan C S</h1>
       </Link>
 
-      <NavigationMenu>
+      <NavigationMenu className="">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>

@@ -6,6 +6,7 @@ import NavBar from "@/components/NavBar";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import NavBarMobile from "@/components/NavBarMobile";
 
 const josefin_sans = Josefin_Sans({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavBar />
+          <NavBarMobile />
           <div className="mt-[100px] w-full">{children}</div>
           <Analytics />
           <SpeedInsights />
