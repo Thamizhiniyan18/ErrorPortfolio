@@ -46,7 +46,7 @@ const SearchBar = ({ Metadata }: Props) => {
           </kbd>{" "}
           to Search
         </p>
-        <div className="w-12 h-12 flex justify-center items-center rounded-full bg-primary">
+        <div className="w-12 h-12 flex justify-center items-center rounded-full bg-primary text-white">
           <span className="material-symbols-outlined text-3xl">search</span>
         </div>
       </div>

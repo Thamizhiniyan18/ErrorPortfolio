@@ -9,8 +9,6 @@ import {
   SheetTrigger,
   SheetFooter,
 } from "@/components/ui/sheet";
-import { Button } from "./ui/button";
-
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 import { Separator } from "./ui/separator";
@@ -50,16 +48,16 @@ const pages: {
     sections: [
       {
         title: "All",
-        href: "/writeups",
+        href: "/writeups?sbd=latest",
         description: "All the Writeups that I have written so far.",
       },
       {
-        title: "HackTheBox",
+        title: "HackTheBox?sbd=latest",
         href: "/writeups?platform=hackthebox",
         description: "HackTheBox Writeups.",
       },
       {
-        title: "TryHackMe",
+        title: "TryHackMe?sbd=latest",
         href: "/writeups?platform=tryhackme",
         description: "TryHackMe Writeups.",
       },
@@ -79,14 +77,8 @@ const NavBarMobile = (props: Props) => {
         <ModeToggle />
 
         <Sheet>
-          <SheetTrigger className="xl:hidden ml-4 text-primary">
-            <Button
-              variant="outline"
-              size="icon"
-              className="flex jusify-center items-center"
-            >
-              <span className="material-symbols-outlined">menu_open</span>
-            </Button>
+          <SheetTrigger className="xl:hidden inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 text-primary ml-4">
+            <span className="material-symbols-outlined">menu_open</span>
           </SheetTrigger>
           <SheetContent side="right" className="xl:hidden">
             <SheetHeader>

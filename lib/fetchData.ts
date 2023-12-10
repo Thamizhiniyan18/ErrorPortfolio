@@ -1,7 +1,6 @@
 import { Octokit } from "octokit";
 import { MarkdownFileURL, WriteupMetaData, WriteupsRepository } from "./types";
 import matter, { GrayMatterFile } from "gray-matter";
-import { compileMDX } from "next-mdx-remote/rsc";
 
 // https://www.programcreek.com/typescript/?api=@octokit/rest.Octokit
 // https://raw.githubusercontent.com/Thamizhiniyan18/Writeups/main/Devvortex/Devvortex.md
@@ -160,75 +159,4 @@ export const getWriteupTags = async () => {
     console.log(error);
     throw error;
   }
-};
-
-export const filterMetadata = (
-  metadata: WriteupMetaData[],
-  platform?: string,
-  tag?: string,
-  sbd?: string,
-  sba?: string
-) => {
-  const filteredData: WriteupMetaData[] | undefined = metadata.filter(
-    (data) => {
-      if (platform && tag) {
-        return (
-          data?.Platform?.toLowerCase() === platform &&
-          data?.tags?.includes(tag as string)
-        );
-      }
-
-      if (platform && !tag) {
-        return data?.Platform?.toLowerCase() === platform;
-      }
-
-      if (!platform && tag) {
-        return data?.tags?.includes(tag as string);
-      }
-    }
-  );
-
-  if (filteredData.length === 0) {
-    return undefined;
-  } else {
-    if (sbd) {
-      if (sbd === "latest") {
-        return filteredData.slice().sort(customDateSortDescending);
-      }
-
-      if (sbd === "oldest") {
-        return filteredData.slice().sort(customDateSortAscending);
-      }
-      return filteredData;
-    }
-    return filteredData;
-  }
-};
-
-const customDateSortDescending = (
-  a: WriteupMetaData,
-  b: WriteupMetaData
-): number => {
-  const dateA =
-    a.CreatedOn && new Date(a.CreatedOn.split("-").reverse().join("-"));
-  const dateB =
-    b.CreatedOn && new Date(b.CreatedOn.split("-").reverse().join("-"));
-
-  if (dateA && dateB) {
-    return dateB.getTime() - dateA.getTime();
-  } else return 0;
-};
-
-const customDateSortAscending = (
-  a: WriteupMetaData,
-  b: WriteupMetaData
-): number => {
-  const dateA =
-    a.CreatedOn && new Date(a.CreatedOn.split("-").reverse().join("-"));
-  const dateB =
-    b.CreatedOn && new Date(b.CreatedOn.split("-").reverse().join("-"));
-
-  if (dateA && dateB) {
-    return dateA.getTime() - dateB.getTime();
-  } else return 0;
 };

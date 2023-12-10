@@ -17,17 +17,17 @@ import {
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "All",
-    href: "/writeups",
+    href: "/writeups?sbd=latest",
     description: "All the Writeups that I have written so far.",
   },
   {
     title: "HackTheBox",
-    href: "/writeups?platform=hackthebox",
+    href: "/writeups?platform=hackthebox?sbd=latest",
     description: "HackTheBox Writeups.",
   },
   {
     title: "TryHackMe",
-    href: "/writeups?platform=tryhackme",
+    href: "/writeups?platform=tryhackme?sbd=latest",
     description: "TryHackMe Writeups.",
   },
 ];

@@ -9,10 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
 import clsx from "clsx";
@@ -23,7 +21,7 @@ const WriteupCard = ({ data }: Props) => {
   return (
     <Link
       href={`/writeups/${data.Title}`}
-      className="flex justify-center items-center"
+      className="flex justify-center items-center hover:shadow-xl dark:hover:shadow-white/10 rounded-xl"
     >
       <Card
         className={clsx(
