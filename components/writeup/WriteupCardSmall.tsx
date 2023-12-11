@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
 import clsx from "clsx";
 import { Separator } from "../ui/separator";
+import { SpotlightCard } from "../Spotlight";
 
 type Props = { data: WriteupMetaData };
 
@@ -17,50 +18,55 @@ const WriteupCardSmall = ({ data }: Props) => {
       href={`/writeups/${data.Title}`}
       className="flex justify-center items-center hover:shadow-xl dark:hover:shadow-white/10 rounded-xl"
     >
-      <Card
-        className={clsx(
-          "w-full h-[80px] lg:w-[400px] p-0 px-4 border dark:hover:bg-white/10 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm flex items-center"
-        )}
-      >
-        <CardHeader className="w-[70px] h-[70px] flex justify-center items-center rounded-xl p-0">
-          {data.Platform === "HackTheBox" && (
-            <Image
-              src={logoHTB_small}
-              alt={`${data.Platform} Logo`}
-              height={200}
-              className="block"
-            />
+      <SpotlightCard className="rounded-xl">
+        <Card
+          className={clsx(
+            "w-full h-[80px] lg:w-[400px] p-0 px-4 border rounded-xl flex items-center"
           )}
-          {data.Platform === "TryHackMe" && (
-            <Image
-              src={logoSmallTHM_White}
-              alt={`${data.Platform} Logo`}
-              height={100}
-              className="hidden dark:block"
-              priority
-            />
-          )}
-          {data.Platform === "TryHackMe" && (
-            <Image
-              src={logoSmallTHM_Color}
-              alt={`${data.Platform} Logo`}
-              width={70}
-              className="block dark:hidden"
-            />
-          )}
-        </CardHeader>
-        <Separator orientation="vertical" className="h-[60px] mx-4 bg-muted" />
-        <CardContent className="w-full flex flex-col justify-center items-start p-0">
-          <h3
-            className={clsx("", {
-              "text-[#9FEF00]": data.Platform === "HackTheBox",
-              "text-red-600": data.Platform === "TryHackMe",
-            })}
-          >
-            {data.Title}
-          </h3>
-        </CardContent>
-      </Card>
+        >
+          <CardHeader className="w-[70px] h-[70px] flex justify-center items-center rounded-xl p-0">
+            {data.Platform === "HackTheBox" && (
+              <Image
+                src={logoHTB_small}
+                alt={`${data.Platform} Logo`}
+                height={200}
+                className="block"
+              />
+            )}
+            {data.Platform === "TryHackMe" && (
+              <Image
+                src={logoSmallTHM_White}
+                alt={`${data.Platform} Logo`}
+                height={100}
+                className="hidden dark:block"
+                priority
+              />
+            )}
+            {data.Platform === "TryHackMe" && (
+              <Image
+                src={logoSmallTHM_Color}
+                alt={`${data.Platform} Logo`}
+                width={70}
+                className="block dark:hidden"
+              />
+            )}
+          </CardHeader>
+          <Separator
+            orientation="vertical"
+            className="h-[60px] mx-4 bg-muted"
+          />
+          <CardContent className="w-full flex flex-col justify-center items-start p-0">
+            <h3
+              className={clsx("", {
+                "text-[#9FEF00]": data.Platform === "HackTheBox",
+                "text-red-600": data.Platform === "TryHackMe",
+              })}
+            >
+              {data.Title}
+            </h3>
+          </CardContent>
+        </Card>
+      </SpotlightCard>
     </Link>
   );
 };

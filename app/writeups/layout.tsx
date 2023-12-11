@@ -6,7 +6,7 @@ export default async function WriteupsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section id="#ScrollToUp" className="w-full flex justify-center p-4">
+    <section id="#ScrollToUp" className="w-full flex justify-center p-4 bg-background">
       {children}
       <ScrollToUp />
     </section>

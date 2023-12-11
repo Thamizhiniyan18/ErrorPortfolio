@@ -11,6 +11,7 @@ import Link from "next/link";
 import { TempMetaData } from "@/lib/metaData";
 import FilterSortBar from "@/components/writeup/FilterSortBar";
 import { SortByAlpha, SortByDate } from "@/lib/sortData";
+import Spotlight from "@/components/Spotlight";
 
 export const metadata = {
   title: "Writeups | Thamizhiniyan C S",
@@ -28,8 +29,8 @@ type Props = {
 };
 
 export default async function Writeups({ searchParams }: Props) {
-  // const MetaData: (WriteupMetaData | undefined)[] = await getWriteupsMetadata();
-  const MetaData: (WriteupMetaData | undefined)[] = TempMetaData;
+  const MetaData: (WriteupMetaData | undefined)[] = await getWriteupsMetadata();
+  // const MetaData: (WriteupMetaData | undefined)[] = TempMetaData;
 
   const Tags: string[] | undefined = await getWriteupTags();
   const filter: boolean =
@@ -90,7 +91,7 @@ export default async function Writeups({ searchParams }: Props) {
 
       <FilterSortBar total={MetaData.length} displayed={DataToDisplay.length} />
 
-      <div className="w-full grid grid-col-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-2">
+      <Spotlight className="w-full grid grid-col-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mt-2 group bg-background">
         {filter &&
           FilteredMetadata &&
           DataToDisplay.map(
@@ -117,7 +118,7 @@ export default async function Writeups({ searchParams }: Props) {
                 <WriteupCard key={`${each.Title}_${index}`} data={each} />
               ))
           )}
-      </div>
+      </Spotlight>
     </div>
   );
 }
