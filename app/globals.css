@@ -222,7 +222,7 @@ body::-webkit-scrollbar-thumb {
 
 .mouse-mask {
   position: absolute;
-  mask-image: url(/_next/static/media/mouse-mask.bb9ccece.svg);
+  mask-image: url(https://raw.githubusercontent.com/Thamizhiniyan18/Portfolio/main/public/assets/mouse-mask.svg);
   mask-repeat: no-repeat;
   mask-size: 500px;
 }
