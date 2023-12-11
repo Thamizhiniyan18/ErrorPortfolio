@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import clsx from "clsx";
 
 type Props = {
   total: number;
@@ -22,6 +23,7 @@ type Props = {
 const FilterSortBar = ({ total, displayed }: Props) => {
   const [SortByDate, setSortByDate] = React.useState("latest");
   const [SortByAlpha, setSortByAlpha] = React.useState("none");
+  const [layout, setLayout] = React.useState("");
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -39,28 +41,61 @@ const FilterSortBar = ({ total, displayed }: Props) => {
     if (value) {
       params.set("sba", value);
     }
+    if (value === "none") {
+      replace(`${pathname}`);
+    }
     replace(`${pathname}?${params.toString()}`);
   };
 
   const layoutHandler = (value?: string) => {
     if (value) {
       params.set("layout", value);
+      setLayout(value);
     } else {
       params.delete("layout");
+      setLayout("");
     }
     replace(`${pathname}?${params.toString()}`);
   };
 
-  //   React.useEffect(() => {
-  //     const urlparams = new URLSearchParams(searchParams);
-  //     if (urlparams.has("sbd")) {
-  //       const sort = urlparams.get("sbd");
-  //       if (sort === "latest" || sort === "ascending") {
-  //       }
-  //     } else {
-  //       urlparams.get("sort");
-  //     }
-  //   }, [searchParams]);
+  React.useEffect(() => {
+    const urlparams = new URLSearchParams(searchParams);
+
+    if (urlparams.has("sbd")) {
+      const value = urlparams.get("sbd");
+      if (value === "latest" || value === "oldest") {
+        setSortByDate(value);
+      }
+    } else {
+      urlparams.delete("sbd");
+      replace(`${pathname}?${urlparams.toString()}`);
+    }
+
+    if (urlparams.has("sba")) {
+      const value = urlparams.get("sba");
+      if (value === "ascending" || value === "descending" || value === "none") {
+        setSortByAlpha(value);
+        if (value === "none") {
+          urlparams.delete("sba");
+          replace(`${pathname}?${urlparams.toString()}`);
+        }
+      }
+    } else {
+      urlparams.delete("sba");
+      replace(`${pathname}?${urlparams.toString()}`);
+    }
+
+    if (urlparams.has("layout")) {
+      const value = urlparams.get("layout");
+      if (value === "list") {
+        setLayout(value);
+      }
+    } else {
+      urlparams.delete("layout");
+      setLayout("");
+      replace(`${pathname}?${urlparams.toString()}`);
+    }
+  }, [searchParams, pathname, replace]);
 
   return (
     <div className="w-full h-[50px] mt-4 mb-8 md:mb-2 flex items-center justify-between flex-col">
@@ -118,7 +153,7 @@ const FilterSortBar = ({ total, displayed }: Props) => {
                   value="none"
                   onClick={() => sortByAlphaHandler("none")}
                 >
-                  Ascending
+                  None
                 </DropdownMenuRadioItem>
                 <DropdownMenuRadioItem
                   value="ascending"
@@ -139,7 +174,9 @@ const FilterSortBar = ({ total, displayed }: Props) => {
           <Button
             variant="outline"
             className="bg-white/10 text-primary mr-4 w-9 md:w-14"
-            onClick={() => replace("writeups")}
+            onClick={() =>
+              replace(`/writeups${layout === "list" ? "?layout=list" : ""}`)
+            }
           >
             <span className="material-symbols-outlined">reset_wrench</span>
           </Button>
@@ -157,7 +194,9 @@ const FilterSortBar = ({ total, displayed }: Props) => {
 
           <Button
             variant="outline"
-            className="bg-white/10 text-primary ml-4 w-9 md:w-14"
+            className={clsx("bg-white/10 text-primary ml-4 w-9 md:w-14", {
+              "text-white": layout === "",
+            })}
             onClick={() => layoutHandler()}
           >
             <span className="material-symbols-outlined">grid_view</span>
@@ -165,7 +204,9 @@ const FilterSortBar = ({ total, displayed }: Props) => {
 
           <Button
             variant="outline"
-            className="bg-white/10 text-primary ml-4 w-9 md:w-14"
+            className={clsx("bg-white/10 text-primary ml-4 w-9 md:w-14", {
+              "text-white": layout === "list",
+            })}
             onClick={() => layoutHandler("list")}
           >
             <span className="material-symbols-outlined">view_list</span>

@@ -37,7 +37,7 @@ const pages: {
       },
       {
         title: "Latest Writeups",
-        href: "/writeups?sort=latest",
+        href: "/writeups?sbd=latest",
         description: "TryHackMe Writeups.",
       },
     ],
@@ -52,12 +52,12 @@ const pages: {
         description: "All the Writeups that I have written so far.",
       },
       {
-        title: "HackTheBox?sbd=latest",
+        title: "HackTheBox",
         href: "/writeups?platform=hackthebox",
         description: "HackTheBox Writeups.",
       },
       {
-        title: "TryHackMe?sbd=latest",
+        title: "TryHackMe",
         href: "/writeups?platform=tryhackme",
         description: "TryHackMe Writeups.",
       },

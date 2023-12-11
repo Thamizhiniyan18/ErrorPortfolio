@@ -9,10 +9,10 @@ import { WriteupMetaData } from "@/lib/types";
 import { Separator } from "@/components/ui/separator";
 import MetadataComponent from "@/components/writeup/MetadataComponent";
 import CustomMDX from "@/components/mdx-remote";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { getTableOfContents } from "@/lib/toc";
-import { WriteupTableOfContents } from "@/components/toc";
 import TableOfContentsSkeleton from "@/components/skeletons/TableOfContentsSkeleton";
+import WriteupTableOfContents from "@/components/writeup/WriteupTableOfContents";
+
+export const revalidate = 43200;
 
 type Props = {
   params: { writeup: string };
@@ -69,25 +69,20 @@ const page = async ({ params }: Props) => {
 
   const Content: string | undefined = WriteupData && WriteupData.content;
 
-  const toc = Content && (await getTableOfContents(Content));
-
   return (
-    <div className="w-full flex">
-      <section className="fixed w-[300px] xl:w-[400px] h-[100vh-100px]">
-        <ScrollArea>
-          <h2 className="w-full text-center p-2 border-none">
-            Table of Contents
-          </h2>
-          <Suspense fallback={<TableOfContentsSkeleton />}>
-            {toc && <WriteupTableOfContents toc={toc} />}
-          </Suspense>
-        </ScrollArea>
-      </section>
+    <div className="w-full flex justify-center md:justify-start">
+      <Suspense fallback={<TableOfContentsSkeleton />}>
+        <WriteupTableOfContents Content={Content} />
+      </Suspense>
 
-      <Separator orientation="vertical" className="ml-[300px] xl:ml-[400px]" />
+      <Separator
+        orientation="vertical"
+        className="hidden lg:block lg:ml-[300px] xl:ml-[400px]"
+      />
+
       <section
         id="ScrollToTop"
-        className="w-[500px] xl:w-[900px] min-h-[100vh-100px] p-4 text-justify max-w-[900px]"
+        className="w-full max-w-full lg:w-[670px] p-0 xl:w-[900px] min-h-[100vh-100px] md:p-4 text-justify lg:max-w-[900px]"
       >
         <Separator orientation="horizontal" />
 

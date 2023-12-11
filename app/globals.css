@@ -148,6 +148,10 @@ body::-webkit-scrollbar-thumb {
   color: hsl(var(--primary));
 }
 
+.WriteupContent :is(code, a) {
+  overflow-wrap: break-word;
+}
+
 .WriteupContent pre {
   width: 100%;
   /* border: 2px solid hsl(var(--primary)); */

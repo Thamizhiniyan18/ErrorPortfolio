@@ -11,7 +11,7 @@ interface TocProps {
   toc: TableOfContents;
 }
 
-export function WriteupTableOfContents({ toc }: TocProps) {
+export function TOC({ toc }: TocProps) {
   const itemIds = React.useMemo(
     () =>
       toc.items
