@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-const MatrixRainingCode = () => {
+const MatrixRainingCode = ({ className }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -84,7 +84,7 @@ const MatrixRainingCode = () => {
 
   return (
     <canvas
-      className="matrix-canvas fixed top-0 left-0 z-[-1]"
+      className={`matrix-canvas fixed top-0 left-0 z-[-1] ${className}`}
       ref={canvasRef}
     ></canvas>
   );
