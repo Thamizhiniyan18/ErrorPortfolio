@@ -12,8 +12,6 @@ export default function Home() {
   const { x, y } = useMousePosition();
   const size: number = 500;
 
-  const windowWidth = window.innerWidth;
-
   const myworks = [
     {
       title: "Projects",
@@ -243,54 +241,55 @@ export default function Home() {
           quantity={100}
           staticity={10}
         />
-        <div className="relative md:w-[95%] xl:w-[80%] h-full flex flex-col md:flex-row justify-evenly items-center">
-          {myworks.map((each, index) => {
-            return windowWidth < 768 ? (
-              <motion.div
-                initial={{ x: each.initialX, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{
-                  ease: "easeIn",
-                  duration: 0.2,
-                  delay: 1 + index / 2,
-                }}
-                key={`Work_${each.title}`}
-                className="w-[90] xs:w-[400px] h-[150px] xl:h-[500px] flex justify-center items-center rounded-xl bg-black/10 dark:bg-white/10 backdrop-blur-sm"
+        <div className="lg:hidden relative md:w-[95%] xl:w-[80%] h-full flex flex-col md:flex-row justify-evenly items-center">
+          {myworks.map((each, index) => (
+            <motion.div
+              initial={{ x: each.initialX, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 0.2,
+                delay: 1 + index / 2,
+              }}
+              key={`Work_${each.title}`}
+              className="w-[90] xs:w-[400px] h-[150px] xl:h-[500px] flex justify-center items-center rounded-xl bg-black/10 dark:bg-white/10 backdrop-blur-sm"
+            >
+              <Link
+                href={each.href}
+                className="relative w-full h-full flex flex-col justify-center items-center text-center p-4 hover:backdrop-blur-md"
               >
-                <Link
-                  href={each.href}
-                  className="relative w-full h-full flex flex-col justify-center items-center text-center p-4 hover:backdrop-blur-md"
-                >
-                  <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight z-[1]">
-                    {each.title}
-                  </h2>
-                  <p>{each.description}</p>
-                </Link>
-              </motion.div>
-            ) : (
-              <motion.div
-                initial={{ y: each.initialY, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{
-                  ease: "easeIn",
-                  duration: 0.2,
-                  delay: 1 + index / 2,
-                }}
-                key={`Work_${each.title}`}
-                className="w-[200px] h-[300px] lg:w-[300px] lg:h-[400px] 2xl:w-[400px] xl:h-[500px] flex justify-center items-center rounded-xl bg-black/10 dark:bg-white/10 backdrop-blur-sm"
+                <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight z-[1]">
+                  {each.title}
+                </h2>
+                <p>{each.description}</p>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+        <div className="hidden lg:flex relative md:w-[95%] xl:w-[80%] h-full flex-col md:flex-row justify-evenly items-center">
+          {myworks.map((each, index) => (
+            <motion.div
+              initial={{ y: each.initialY, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{
+                ease: "easeIn",
+                duration: 0.2,
+                delay: 1 + index / 2,
+              }}
+              key={`Work_${each.title}`}
+              className="w-[200px] h-[300px] lg:w-[300px] lg:h-[400px] 2xl:w-[400px] xl:h-[500px] flex justify-center items-center rounded-xl bg-black/10 dark:bg-white/10 backdrop-blur-sm"
+            >
+              <Link
+                href={each.href}
+                className="relative w-full h-full flex flex-col justify-center items-center text-center p-4 hover:backdrop-blur-md"
               >
-                <Link
-                  href={each.href}
-                  className="relative w-full h-full flex flex-col justify-center items-center text-center p-4 hover:backdrop-blur-md"
-                >
-                  <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight z-[1]">
-                    {each.title}
-                  </h2>
-                  <p>{each.description}</p>
-                </Link>
-              </motion.div>
-            );
-          })}
+                <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight z-[1]">
+                  {each.title}
+                </h2>
+                <p>{each.description}</p>
+              </Link>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </main>
