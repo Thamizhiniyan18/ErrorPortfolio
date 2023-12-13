@@ -18,10 +18,10 @@ const WriteupCardSmall = ({ data }: Props) => {
       href={`/writeups/${data.Title}`}
       className="flex justify-center items-center hover:shadow-xl dark:hover:shadow-white/10 rounded-xl"
     >
-      <SpotlightCard className="rounded-xl">
+      <SpotlightCard className="w-full h-[80px] lg:w-[400px] p-0 rounded-xl flex items-center">
         <Card
           className={clsx(
-            "w-full h-[80px] lg:w-[400px] p-0 px-4 border rounded-xl flex items-center"
+            "w-full h-[80px] lg:w-[400px] p-0 px-4 rounded-xl flex items-center"
           )}
         >
           <CardHeader className="w-[70px] h-[70px] flex justify-center items-center rounded-xl p-0">
